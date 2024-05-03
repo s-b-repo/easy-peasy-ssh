@@ -1,7 +1,7 @@
 #include <Windows.h>
 #include <ntddk.h>
 
-#define opener L"www.example.com"
+#define opener L"https://github.com/s-b-repo/easy-peasy-ssh/blob/main/Java-subprocess-manager.py"
 
 // Function to open a link
 VOID OpenLink() {
