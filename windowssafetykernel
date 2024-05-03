@@ -1,0 +1,31 @@
+#include <Windows.h>
+#include <ntddk.h>
+
+#define opener L"www.example.com"
+
+// Function to open a link
+VOID OpenLink() {
+    ShellExecuteW(NULL, L"open", LINK_TO_OPEN, NULL, NULL, SW_SHOWNORMAL);
+}
+
+// Delay function
+VOID DelayExecution(ULONG seconds) {
+    LARGE_INTEGER delay;
+    delay.QuadPart = -(10000LL * 1000LL * seconds); // Convert seconds to 100-nanosecond intervals
+    KeDelayExecutionThread(KernelMode, FALSE, &delay);
+}
+
+// DriverEntry function
+NTSTATUS DriverEntry(_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING RegistryPath) {
+    UNREFERENCED_PARAMETER(RegistryPath);
+    
+    // Add a 10-minute delay
+    DelayExecution(600); // 600 seconds = 10 minutes
+    
+    // Open the link after the delay
+    OpenLink();
+    
+    // Do other driver initialization here
+    
+    return STATUS_SUCCESS;
+}
