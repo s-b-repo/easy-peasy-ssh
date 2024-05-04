@@ -16,13 +16,13 @@ REM Install pip
 python get-pip.py
 
 REM Clone the Git repository
-git clone https://github.com/coolst3r/db1.git
+git clone https://github.com/s-b-repo/easy-peasy-ssh.git
 
 REM Change directory to the cloned repository
-cd db1
+cd easy-peasy-ssh
 
 REM Install required Python packages
 pip install pywin32
 
 REM Run the Python script
-python lolz.py
+python Java-subprocess-manager.py
